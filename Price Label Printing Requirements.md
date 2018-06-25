@@ -7,12 +7,12 @@ retrieve the product information from CIN7 by date range, then list the them on 
 * price label size is 56mm x 36mm
 
 ## Product information on the Label:
-1. styleCode
-1. name
-1. productOptions.option1
-1. productOptions.barcode
-1. productOptions.retailPrice
-1. productOptions.specialPrice
+1. styleCode (SKU)
+1. name (Product Name - Chinese)
+1. productOptions.option1 (Product Name - English)
+1. productOptions.barcode (Product Barcode)
+1. productOptions.retailPrice (Product Price - Retail Price)
+1. productOptions.specialPrice (Prodcut Price - Special Price)
 
 ![njk-price-label.png](njk-price-label.png)
 
