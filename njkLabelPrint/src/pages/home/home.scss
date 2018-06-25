@@ -1,0 +1,27 @@
+page-home {
+  .price-label-container {
+    width: 56mm;
+    height: 36mm;
+    display: block;
+    float: left;
+    overflow: hidden;
+    border-style: dotted;
+    border-color: #aaa;
+    border-width: 1px;
+    page-break-after: always;
+  }
+}
+
+@media print {
+
+  ion-header {
+    display: none;
+  }
+  ion-item.item.item-block.item-md.item-datetime.input-has-value.item-input-has-value {
+    display: none;
+  }
+
+  .print-page-break{
+    page-break-after: always;
+  }
+}

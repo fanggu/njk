@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      NJK Label Printing
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime  pickerFormat='YYYY MMM DD HH mm' [(ngModel)]="fromDate" (ionChange)="dateSelected()"></ion-datetime>
+  </ion-item>
+
+<div class='price-label-container' *ngFor='let label of labels;'>
+  <price-label [labelContent]='label'></price-label>
+  <div *ngIf="(index+1)%25 === 0" class="print-page-break"></div>
+</div>
+
+</ion-content>

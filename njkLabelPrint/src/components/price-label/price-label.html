@@ -1,0 +1,8 @@
+<div class='label-name'>{{ labelContent.name }}</div>
+<div class='label-name-english'>{{ labelContent.enName }}</div>
+<div class="label-price {{ labelContent.specialPrice === 0 ? '' : 'on-spcial' }}">{{ labelContent.retailPrice }}</div>
+<div class='label-price-spcial'>{{ labelContent.specialPrice === 0 ? '' : labelContent.specialPrice }}</div>
+
+<div class='label-barcode'>
+  <svg #barcodeSvg class="barcodeSvg" id={{labelContent.barcode}}></svg>
+</div><div class='label-sku'>{{ labelContent.styleCode }}</div>

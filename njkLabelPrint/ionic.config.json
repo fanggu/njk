@@ -1,0 +1,14 @@
+{
+  "name": "njkLabelPrint",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/Products",
+      "proxyUrl": "https://api.cin7.com/api/v1/Products"
+    }
+  ]
+}

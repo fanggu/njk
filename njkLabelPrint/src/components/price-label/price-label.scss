@@ -1,0 +1,59 @@
+price-label {
+  width: 52mm;
+  height: 32mm;
+  margin: 1mm;
+  position: absolute;
+
+  .label-name {
+    font-size: 10pt;
+    line-height: 12pt;
+  }
+
+  .label-name-english {
+    font-size: 10pt;
+    line-height: 12pt;
+  }
+
+  .label-barcode {
+
+  }
+
+  .label-price {
+    position: absolute;
+    width: 35%;
+    right: 1px;
+    bottom: 20px;
+    font-size: 20pt;
+    text-align: right;
+  }
+
+  .on-spcial{
+    font-size: 12pt;
+    bottom: 45px;
+    text-decoration: line-through;
+  }
+
+  .label-price-spcial {
+    position: absolute;
+    width: 35%;
+    right: 1px;
+    bottom: 20px;
+    font-size: 20pt;
+    text-align: right;
+  }
+
+  .label-sku {
+    position: absolute;
+    width: 35%;
+    right: 1px;
+    bottom: 4px;
+    font-size: 8pt;
+    line-height: 8pt;
+  }
+
+  .label-barcode {
+    position: absolute;
+    bottom: 1px;
+  }
+
+}
