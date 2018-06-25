@@ -2,6 +2,7 @@
 
 retrieve the product information from CIN7 by date range, then list the them on the page for view and print.
 
+* select date range by modifiedDate
 * print on A4 size paper
 * 25 price labels per page
 * price label size is 56mm x 36mm
