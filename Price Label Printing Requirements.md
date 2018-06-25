@@ -14,6 +14,8 @@ retrieve the product information from CIN7 by date range, then list the them on 
 1. productOptions.retailPrice
 1. productOptions.specialPrice
 
+![njk-price-label.png](njk-price-label.png)
+
 ## Product data JSON object example
     {
         "id": 27404,
