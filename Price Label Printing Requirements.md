@@ -97,3 +97,9 @@ retrieve the product information from CIN7 by date range, then list the them on 
             }
         ]
     }
+
+## CIN7 API
+
+[Cin7 APIv1 Documentation Link](https://api.cin7.com/API/Help)
+
+[Cin7 Products API Documentation Link](https://api.cin7.com/API/Help/Api/GET-v1-Products_fields_where_order_page_rows)
