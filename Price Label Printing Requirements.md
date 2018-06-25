@@ -3,8 +3,10 @@
 retrieve the product information from CIN7 by date range, then list the them on the page for view and print.
 
 * print on A4 size paper
-* 25 price label per page
+* 25 price labels per page
 * price label size is 56mm x 36mm
+* able to export the price labels as PDF format
+* generate barcode image using barcode data
 
 ## Product information on the Label:
 1. styleCode (SKU)
@@ -12,7 +14,7 @@ retrieve the product information from CIN7 by date range, then list the them on 
 1. productOptions.option1 (Product Name - English)
 1. productOptions.barcode (Product Barcode)
 1. productOptions.retailPrice (Product Price - Retail Price)
-1. productOptions.specialPrice (Prodcut Price - Special Price)
+1. productOptions.specialPrice (Product Price - Special Price)
 
 ![njk-price-label.png](njk-price-label.png)
 
