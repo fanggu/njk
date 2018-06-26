@@ -142,8 +142,37 @@ retrieve the product information from CIN7 by date range, then list the them on 
         ]
     }
 
-## CIN7 API
+## CIN7 API Documentation
 
 [Cin7 APIv1 Documentation Link](https://api.cin7.com/API/Help)
 
 [Cin7 Products API Documentation Link](https://api.cin7.com/API/Help/Api/GET-v1-Products_fields_where_order_page_rows)
+
+### PHP HttpRequest Sample
+
+    <?php
+
+    $request = new HttpRequest();
+    $request->setUrl('https://api.cin7.com/api/v1/Products');
+    $request->setMethod(HTTP_METH_GET);
+
+    $request->setQueryData(array(
+      'fields' => 'id,code,styleCode,ModifiedDate,name,ProductOptions',
+      'where' => 'modifieddate%3E%272018-06-25T00%3A00%3A00Z%27',
+      'order' => 'ASC',
+      'page' => '1',
+      'rows' => '250'
+    ));
+
+    $request->setHeaders(array(
+      'Cache-Control' => 'no-cache',
+      'Authorization' => 'Basic bmprZ3JvdXBOWjo4N2I1MDczODllNTc0OGZmYjJjZGE1YzBlMmJlZGM1Ng=='
+    ));
+
+    try {
+      $response = $request->send();
+
+      echo $response->getBody();
+    } catch (HttpException $ex) {
+      echo $ex;
+    }
