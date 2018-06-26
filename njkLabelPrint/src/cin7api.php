@@ -96,21 +96,18 @@ if($from_date != '' && $to_date != ''){
 
 			foreach ($productOptions as $keyrow => $row) {
 				$product_modifiedDate 	= $row['modifiedDate'];
-				//$modifiedDate 	= strtotime($row['modifiedDate']);
-				//$from_date 		= strtotime($from_date);
-				
-
-				//echo(date("Y-m-dTG:i:sz",$modifiedDate) . "<br />");
-				// echo $modifiedDate_1 = date("Y-m-dTG:i:sz",$modifiedDate);
+				$modifiedDate 	= strtotime($row['modifiedDate']);
+				$from_date 		= strtotime($from_date);
 
 				date_default_timezone_set("UTC");
 
-				// echo $modifiedDate = date("Y-m-dTG:i:sz", $modifiedDate);
-				//echo $modifiedDate = date("Y-m-d H:i:s", $modifiedDate);
+				//$modifiedDate = date("Y-m-dTG:i:sz", $modifiedDate);
+				$modifiedDate = date("Y-m-d H:i:s", $modifiedDate);
+				$modifiedDate1 	= strtotime($modifiedDate);
 
-				$modifiedDate1 	= new DateTime($row['modifiedDate']);
-				$from_date1 	= new DateTime($from_date);
-				$to_date1 		= new DateTime($to_date);
+				//echo $modifiedDate1 	= new DateTime($row['modifiedDate']); exit;
+				//$from_date1 	= new DateTime($from_date);
+				//$to_date1 		= new DateTime($to_date);
 				
 							
 				if($from_date1 <= $modifiedDate1 && $modifiedDate1 >= $to_date1){
