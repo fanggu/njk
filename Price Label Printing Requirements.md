@@ -19,6 +19,47 @@ retrieve the product information from CIN7 by date range, then list the them on 
 
 ![njk-price-label.png](njk-price-label.png)
 
+## HTML output structure for price label list
+    <html>
+    ...
+
+      <body>
+        ...
+
+        <!--
+          BOF - price label list container
+        -->
+        <div class='price-label-list'>
+          <!-- BOF - price label items-->
+          <div class="price-label-item">
+            <!-- name (Product Name - Chinese) -->
+            <div class="label-name">東北 關廟麵(粗)3kg</div>
+            <!-- productOptions.option1 (Product Name - English) -->
+            <div class="label-name-english">DB Dry Plain Noodle (Thick) 3Kg</div>
+            <!-- productOptions.retailPrice (Product Price - Retail Price) -->
+            <div class="label-price ">18.69</div>
+            <!-- productOptions.specialPrice (Product Price - Special Price) -->
+            <div class="label-price-spcial">16.99</div>
+            <!-- productOptions.barcode (Product Barcode) -->
+            <div class="label-barcode">
+              <svg class="barcode-image"></svg>
+            </div>
+            <!-- styleCode (SKU) -->
+            <div class="label-sku">MNTM002</div>
+          </div>
+          <!-- ... more price label item -->
+          <div class="price-label-item">
+            ...
+          </div>
+          <!-- EOF - price label items -->
+        </div>
+        <!--
+          EOF - price label list container
+        -->
+
+      </body>
+    </html>
+
 ## Product data JSON object example
     {
         "id": 27404,
