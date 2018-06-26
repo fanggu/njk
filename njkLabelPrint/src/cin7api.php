@@ -1,15 +1,3 @@
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="../datetime/jquery-ui-timepicker-addon.css">
-<script src="../datetime/jquery-ui-timepicker-addon.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-
-<!-- <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="dist/simplePagination.css" />
-<script src="dist/jquery.simplePagination.js"></script> -->
-
 <?php
 session_start();
 // ini_set('display_errors', 1);
@@ -17,7 +5,14 @@ session_start();
 
 // First, include Requests
 include('../library/Requests.php');
-include('../php-barcode-generator-master/generate-verified-files.php');
+foreach (glob("../php-barcode-generator-master/src/*.php") as $filename)
+{
+    include $filename;
+}
+foreach (glob("../php-barcode-generator-master/src/Exceptions/*.php") as $filename)
+{
+    include $filename;
+}
 
 define("API_BASE_URL", 'https://api.cin7.com/api/v1/');
 define("BASIC_AUTH", 'Basic bmprZ3JvdXBOWjo4N2I1MDczODllNTc0OGZmYjJjZGE1YzBlMmJlZGM1Ng==');
@@ -33,8 +28,8 @@ if(isset($_POST['submitButton'])){
 }
 
 if($_SESSION['from_date'] != '' && $_SESSION['to_date'] != ''){
-	$from_date 		= strtotime($_SESSION['from_date']); 
-	$to_date 		= strtotime($_SESSION['to_date']); 
+	$from_date 		= strtotime($_SESSION['from_date']);
+	$to_date 		= strtotime($_SESSION['to_date']);
 
 	$from_date 		= str_replace('+00:00', 'Z', gmdate('c', strtotime($_SESSION['from_date'])));
 	$to_date 		= str_replace('+00:00', 'Z', gmdate('c', strtotime($_SESSION['to_date'])));
@@ -99,12 +94,12 @@ if($where){
 	$response = $request->body;
 	$response_body = json_decode($response,1);
 	//echo '<pre>'; print_r($response_body); exit;
-	
+
 }
 
 
 
-$total_records 	= 250;  
+$total_records 	= 250;
 $limit 			= 50;
 $total_pages = ceil($total_records / $limit);
 $total_pages11 = $total_records - $limit;
@@ -112,11 +107,33 @@ $offset = ($currentPage - 1) * $limit + 1;
 
 
 if(!empty($response_body)){
-	$i = 1; 
-	$product_sku 		= ""; 
-	$product_name 		= ""; 
+	$i = 1;
+	$product_sku 		= "";
+	$product_name 		= "";
 
 	$generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+
+	echo $html = '<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<title>Price Label Print Page</title>
+
+			<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+			<link rel="stylesheet" href="../datetime/jquery-ui-timepicker-addon.css">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+			<script src="../datetime/jquery-ui-timepicker-addon.js"></script>
+
+			<!-- <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
+			<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+			<link rel="stylesheet" href="dist/simplePagination.css" />
+			<script src="dist/jquery.simplePagination.js"></script> -->
+		</head>
+
+		<body>';
 
 	$html = '<table style="border-collapse: collapse;" class="table table-bordered">';
 
@@ -134,7 +151,7 @@ if(!empty($response_body)){
 	foreach ($response_body as $value) {
 
 		$product_sku 		= $value['styleCode'];
-		$product_name 		= $value['name']; 
+		$product_name 		= $value['name'];
 
 		if(!empty($value['productOptions'])){
 			$productOptions = $value['productOptions'];
@@ -158,13 +175,13 @@ if(!empty($response_body)){
 				//echo $modifiedDate1 	= new DateTime($row['modifiedDate']); exit;
 				//$from_date1 	= new DateTime($from_date);
 				//$to_date1 		= new DateTime($to_date);
-							
+
 				$product_name_english 	= $row['option1'];
 				$product_barcode 		= $row['barcode'];
 
-				if($product_barcode == 'vege007' || $product_barcode == 'fruit057' || $product_barcode == 'vege008' || $product_barcode =='vege013' || $product_barcode =='vege002' || $product_barcode =='vege011' || $product_barcode =='fruit014' || $product_barcode =='FROZEN1074' || $product_barcode == 'KITCHEN0188' || $product_barcode =='KITCHEN0189' || $product_barcode =='KITCHEN0190'){
-					continue;
-				}
+				// if($product_barcode == 'vege007' || $product_barcode == 'fruit057' || $product_barcode == 'vege008' || $product_barcode =='vege013' || $product_barcode =='vege002' || $product_barcode =='vege011' || $product_barcode =='fruit014' || $product_barcode =='FROZEN1074' || $product_barcode == 'KITCHEN0188' || $product_barcode =='KITCHEN0189' || $product_barcode =='KITCHEN0190'){
+				// 	continue;
+				// }
 
 				$product_retailPrice 	= $row['retailPrice'];
 				$product_specialPrice 	= $row['specialPrice'];
@@ -182,15 +199,24 @@ if(!empty($response_body)){
 
 				$product_barcode_data = '';
 
-				if($product_barcode ){
-					$product_barcode_data = $generator->getBarcode($product_barcode, $generator::TYPE_EAN_13);
-				}else if($product_sku){
-					$product_barcode_data = $generator->getBarcode($product_sku, $generator::TYPE_CODE_128);
+				try {
+					if(is_numeric($product_barcode) && strlen((string)$product_barcode) === 13){
+						$product_barcode_data = $generator->getBarcode($product_barcode, $generator::TYPE_EAN_13, 2);
+					}else if(empty($product_barcode)){
+						$product_barcode = '9999999999999';
+						$product_barcode_data = $generator->getBarcode($product_barcode, $generator::TYPE_EAN_13, 2);
+					}else {
+						$product_barcode_data = $generator->getBarcode($product_barcode, $generator::TYPE_CODE_128, 2);
+					}
+				} catch (Exception $e) {
+						echo "Error: ".$e->getMessage()."\n";
+						var_dump($e);
+						continue;
 				}
-				
-				if ($i == 1) { 
-					$html .= "<tr>"; 
-				} 
+
+				if ($i == 1) {
+					$html .= "<tr>";
+				}
 
 				$html .= '<td style="border: 1px solid black;">
 						<span>'.$product_modifiedDate.'</span><br />
@@ -203,15 +229,15 @@ if(!empty($response_body)){
 								<span style="padding: 25px;">'.$product_barcode.'</span>
 							</div>
 							'.$pricing_data.'
-						</div>						
+						</div>
 					</td>';
 
 				if($i == 3) {
-					$html .= "</tr>"; 
+					$html .= "</tr>";
 					$i = 1;
 				}else {
 					$i++;
-				}			
+				}
 			}
 		}
 	}
@@ -219,12 +245,11 @@ if(!empty($response_body)){
 }
 
 
-
 $pagLink = "<nav><ul class='pagination'>";
-for ($i=1; $i<=$currentPage + 1; $i++) {  
+for ($i=1; $i<=$currentPage + 1; $i++) {
          $pagLink .= "<li><a href='cin7api.php?page=$i'>".$i."</a></li>";
-};  
-echo $pagLink . "</ul></nav>";  
+};
+echo $pagLink . "</ul></nav>";
 
 
 if(!isset($_POST['submitButton'])){
@@ -236,11 +261,13 @@ if(!isset($_POST['submitButton'])){
 	</form>';
 	echo $form_data;
 }
-?>
 
-<script type="text/javascript">
+echo $html = '<script type="text/javascript">
 $( function() {
 	$( ".datepicker" ).datetimepicker();
 });
 </script>
 
+</body>
+
+</html>';
